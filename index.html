@@ -512,10 +512,452 @@ footer{background:#060f1a;padding:1.4rem 8%;display:flex;justify-content:space-b
   /* BACK TO TOP */
   #back-top{bottom:1.2rem;right:1.2rem;width:40px;height:40px;font-size:1rem}
 }
+/* ── DARK / LIGHT TOGGLE ── */
+body.dark {
+  --white:#0f1c2e; --light:#162438; --border:#1e3a5f;
+  --navy:#e8eaf6; --navy2:#c5cae9; --gray:#8896a7;
+  background:#0f1c2e; color:#e8eaf6;
+}
+body.dark nav { background:rgba(15,28,46,0.97); border-bottom-color:#1e3a5f; }
+body.dark .nav-logo { color:#e8eaf6; }
+body.dark .nav-links a { color:#8896a7; }
+body.dark .skill-card,
+body.dark .timeline-card,
+body.dark .cert-card,
+body.dark .edu-card,
+body.dark .lang-card,
+body.dark .exp-card,
+body.dark .info-item { background:#162438; border-color:#1e3a5f; color:#e8eaf6; }
+body.dark .skill-name,
+body.dark .tc-role,
+body.dark .cert-name,
+body.dark .edu-degree,
+body.dark .lang-name,
+body.dark .exp-card-role { color:#e8eaf6; }
+body.dark .hero { background:linear-gradient(135deg,#0f1c2e,#0d2137); }
+body.dark .hero-right { background:linear-gradient(160deg,#0d2137,#0a1929); }
+body.dark .hero-card { background:#162438; }
+body.dark .hero-card-name { color:#e8eaf6; }
+body.dark .section-alt { background:#111f33; }
+body.dark .section-heading { color:#e8eaf6; }
+body.dark .about-text p { color:#8896a7; }
+body.dark .hero-desc { color:#8896a7; }
+body.dark .hero-title { color:#e8eaf6; }
+body.dark .hero-subtitle { color:var(--gold); }
+body.dark .btn-main { background:#1e3a5f; }
+body.dark .btn-sec { border-color:#1e3a5f; color:#e8eaf6; }
+body.dark .stat-l { color:rgba(255,255,255,0.4); }
+body.dark .skill-bar-track,
+body.dark .lang-track { background:#1e3a5f; }
+body.dark footer { background:#060f1a; }
+
+.theme-toggle {
+  width:44px; height:24px;
+  background:#e2e8f0; border-radius:12px;
+  border:none; cursor:pointer;
+  position:relative; transition:background 0.3s;
+  flex-shrink:0;
+}
+body.dark .theme-toggle { background:#1e3a5f; }
+.theme-toggle::after {
+  content:''; position:absolute;
+  top:3px; left:3px;
+  width:18px; height:18px; border-radius:50%;
+  background:var(--teal); transition:transform 0.3s;
+}
+body.dark .theme-toggle::after { transform:translateX(20px); }
+.theme-icon { font-size:0.75rem; }
+
+/* ── SCROLL PROGRESS BAR ── */
+#scroll-progress {
+  position:fixed; top:0; left:0; height:3px;
+  background:linear-gradient(90deg,var(--teal),var(--gold));
+  width:0%; z-index:9999;
+  transition:width 0.1s linear;
+  box-shadow:0 0 8px rgba(14,165,160,0.5);
+}
+
+/* ── SECTION DIVIDERS ── */
+.wave-divider { display:block; width:100%; overflow:hidden; line-height:0; }
+.wave-divider svg { display:block; }
+
+/* ── TILT CARDS ── */
+.tilt { transform-style:preserve-3d; }
+
+/* ── VALUES SECTION ── */
+.values-grid {
+  display:grid; grid-template-columns:repeat(4,1fr);
+  gap:1.5rem; margin-top:3rem;
+}
+.value-card {
+  padding:2.5rem 1.5rem; text-align:center;
+  border-radius:20px; border:1px solid var(--border);
+  background:white; transition:all 0.35s ease;
+  position:relative; overflow:hidden;
+}
+body.dark .value-card { background:#162438; border-color:#1e3a5f; }
+.value-card::before {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(135deg,rgba(14,165,160,0.05),rgba(232,184,109,0.05));
+  opacity:0; transition:opacity 0.3s;
+}
+.value-card:hover { transform:translateY(-8px); box-shadow:0 24px 50px rgba(14,165,160,0.12); border-color:var(--teal); }
+.value-card:hover::before { opacity:1; }
+.value-icon { font-size:2.8rem; margin-bottom:1.2rem; display:block; transition:transform 0.4s; }
+.value-card:hover .value-icon { transform:scale(1.2) rotate(-5deg); }
+.value-title {
+  font-family:'Playfair Display',serif; font-weight:800;
+  font-size:1.1rem; color:var(--navy); margin-bottom:0.6rem;
+}
+body.dark .value-title { color:#e8eaf6; }
+.value-desc { font-size:0.82rem; color:var(--gray); line-height:1.65; }
+
+/* ── IMPACT NUMBERS ── */
+.impact-section {
+  background:linear-gradient(135deg,var(--navy) 0%,#0d2137 100%);
+  padding:5rem 8%; position:relative; overflow:hidden; z-index:1;
+}
+.impact-section::before {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse at 30% 50%,rgba(14,165,160,0.15),transparent 60%),
+             radial-gradient(ellipse at 70% 50%,rgba(232,184,109,0.08),transparent 60%);
+}
+.impact-grid {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:2rem; position:relative; z-index:1;
+}
+.impact-item { text-align:center; padding:2rem; }
+.impact-num {
+  font-family:'Playfair Display',serif; font-weight:800;
+  font-size:clamp(3rem,6vw,5rem); line-height:1;
+  background:linear-gradient(135deg,var(--teal-light),var(--gold));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  display:block; margin-bottom:0.5rem;
+}
+.impact-label {
+  font-size:0.9rem; color:rgba(255,255,255,0.6);
+  font-weight:500; line-height:1.5;
+}
+.impact-sublabel {
+  font-family:'Space Mono',monospace;
+  font-size:0.65rem; color:var(--teal-light);
+  letter-spacing:0.1em; text-transform:uppercase;
+  margin-top:0.4rem; display:block;
+}
+
+/* ── SERVICES SECTION ── */
+.services-grid {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:1.5rem; margin-top:3rem;
+}
+.service-card {
+  border-radius:20px; padding:2.5rem 2rem;
+  background:white; border:1px solid var(--border);
+  transition:all 0.35s ease; position:relative; overflow:hidden;
+  cursor:default;
+}
+body.dark .service-card { background:#162438; border-color:#1e3a5f; }
+.service-card::after {
+  content:''; position:absolute; top:0; left:0; right:0; height:4px;
+  background:linear-gradient(90deg,var(--teal),var(--gold));
+  transform:scaleX(0); transform-origin:left; transition:transform 0.35s;
+}
+.service-card:hover { transform:translateY(-6px); box-shadow:0 24px 50px rgba(14,165,160,0.1); border-color:var(--teal); }
+.service-card:hover::after { transform:scaleX(1); }
+.service-num {
+  font-family:'Playfair Display',serif; font-size:3.5rem; font-weight:800;
+  color:rgba(14,165,160,0.12); line-height:1; margin-bottom:1rem;
+  transition:color 0.3s;
+}
+.service-card:hover .service-num { color:rgba(14,165,160,0.25); }
+.service-title {
+  font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700;
+  color:var(--navy); margin-bottom:0.6rem;
+}
+body.dark .service-title { color:#e8eaf6; }
+.service-desc { font-size:0.83rem; color:var(--gray); line-height:1.7; }
+.service-tags { display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:1rem; }
+
+/* ── GLASSMORPHISM overlay on some cards ── */
+.glass {
+  background:rgba(255,255,255,0.08) !important;
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.15) !important;
+}
+
+/* ── GRADIENT TEXT ── */
+.grad-text {
+  background:linear-gradient(135deg,var(--teal) 0%,var(--gold) 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+}
+
+/* ── SMOOTH TRANSITIONS ── */
+.section, .testimonials-section, .contact-section,
+.stats-bar, .impact-section { transition:background 0.4s ease; }
+
+
+/* ══════════════════════════════════════
+   V5 DESIGN UPGRADES
+══════════════════════════════════════ */
+
+/* CUSTOM SCROLLBAR */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--light); }
+::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: var(--teal-light); }
+body.dark ::-webkit-scrollbar-track { background: #0a1929; }
+
+/* ANIMATED HERO GRADIENT MESH */
+.hero-mesh {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: 
+    radial-gradient(ellipse at 20% 50%, rgba(14,165,160,0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(232,184,109,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 80%, rgba(14,165,160,0.06) 0%, transparent 50%);
+  animation: meshShift 8s ease-in-out infinite alternate;
+}
+@keyframes meshShift {
+  0%   { background-position: 0% 50%; filter: hue-rotate(0deg); }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; filter: hue-rotate(15deg); }
+}
+
+/* SECTION BIG NUMBERS */
+.section-bg-num {
+  position: absolute; top: -1rem; left: 5%;
+  font-family: 'Playfair Display', serif; font-weight: 800;
+  font-size: clamp(6rem, 15vw, 14rem);
+  color: rgba(14,165,160,0.05); line-height: 1;
+  pointer-events: none; user-select: none;
+  z-index: 0; letter-spacing: -0.05em;
+}
+body.dark .section-bg-num { color: rgba(14,165,160,0.07); }
+.section { position: relative; overflow: hidden; }
+.section > *:not(.section-bg-num) { position: relative; z-index: 1; }
+
+/* TEXT REVEAL ANIMATION */
+.text-reveal {
+  overflow: hidden; display: inline-block;
+}
+.text-reveal .inner {
+  display: inline-block;
+  transform: translateY(100%);
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.text-reveal.visible .inner { transform: translateY(0); }
+
+/* WORD-BY-WORD REVEAL */
+.word-reveal span {
+  display: inline-block; overflow: hidden;
+  vertical-align: bottom;
+}
+.word-reveal span em {
+  display: inline-block; font-style: normal;
+  transform: translateY(110%);
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.word-reveal.visible span em { transform: translateY(0); }
+
+/* SIDE SOCIAL BAR */
+.side-bar {
+  position: fixed; left: 1.5rem; top: 50%;
+  transform: translateY(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 1rem;
+  z-index: 90;
+}
+.side-bar::before, .side-bar::after {
+  content: ''; width: 1px; height: 60px;
+  background: linear-gradient(to bottom, transparent, var(--teal));
+}
+.side-bar::after {
+  background: linear-gradient(to top, transparent, var(--teal));
+}
+.side-bar a {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 8px; background: white;
+  border: 1px solid var(--border);
+  font-size: 0.9rem; text-decoration: none;
+  transition: all 0.3s; color: var(--gray);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+body.dark .side-bar a { background: #162438; border-color: #1e3a5f; }
+.side-bar a:hover { background: var(--teal); color: white; transform: translateX(4px); border-color: var(--teal); box-shadow: 0 4px 15px rgba(14,165,160,0.3); }
+
+/* SECTION PROGRESS DOTS */
+.progress-dots {
+  position: fixed; right: 1.5rem; top: 50%;
+  transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 0.75rem;
+  z-index: 90;
+}
+.progress-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--border); border: none; padding: 0;
+  cursor: pointer; transition: all 0.3s ease;
+  position: relative;
+}
+body.dark .progress-dot { background: #1e3a5f; }
+.progress-dot.active {
+  background: var(--teal); transform: scale(1.5);
+  box-shadow: 0 0 8px rgba(14,165,160,0.5);
+}
+.progress-dot::after {
+  content: attr(data-label);
+  position: absolute; right: calc(100% + 12px); top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.68rem; font-weight: 600; color: var(--teal);
+  white-space: nowrap; opacity: 0; pointer-events: none;
+  font-family: 'Space Mono', monospace; letter-spacing: 0.05em;
+  transition: opacity 0.2s;
+}
+.progress-dot:hover::after { opacity: 1; }
+
+/* MARQUEE BAND */
+.marquee-band {
+  background: var(--navy); padding: 1rem 0;
+  overflow: hidden; border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  position: relative; z-index: 1;
+}
+.marquee-track {
+  display: flex; width: max-content;
+  animation: marqueeScroll 25s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+.marquee-item {
+  display: flex; align-items: center; gap: 1.5rem;
+  padding: 0 2rem; white-space: nowrap;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem; font-weight: 700;
+  color: rgba(255,255,255,0.4); letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.marquee-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
+@keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* MAGNETIC BUTTONS */
+.magnetic { transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+
+/* IMAGE PARALLAX */
+.parallax-img { transition: transform 0.1s linear; }
+
+/* HIGHLIGHTED KEYWORDS */
+.highlight-word {
+  position: relative; display: inline-block;
+}
+.highlight-word::after {
+  content: ''; position: absolute;
+  bottom: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--teal), var(--gold));
+  border-radius: 2px;
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.5s ease;
+}
+.highlight-word.visible::after { transform: scaleX(1); }
+
+/* SLOT MACHINE NUMBERS */
+.slot-num {
+  display: inline-block;
+  overflow: hidden;
+  line-height: 1;
+}
+
+/* SMOOTH NAV TRANSITION */
+nav { transition: background 0.4s ease, box-shadow 0.3s ease; }
+nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.08); }
+body.dark nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.3); }
+
+/* BENTO ABOUT GRID */
+.bento-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr 0.8fr;
+  grid-template-rows: 240px 200px;
+  gap: 1rem; margin-top: 3rem;
+}
+.bento-cell {
+  border-radius: 20px; overflow: hidden;
+  position: relative; transition: transform 0.4s ease;
+}
+.bento-cell:hover { transform: scale(1.02); z-index: 2; }
+.bento-cell img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+.bento-cell.tall { grid-row: 1 / 3; }
+.bento-cell.stat-cell {
+  background: linear-gradient(135deg, var(--teal), var(--navy));
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 1.5rem;
+  border: none;
+}
+.bento-cell.quote-cell {
+  background: var(--navy); padding: 2rem;
+  display: flex; align-items: center;
+}
+.bento-stat-num {
+  font-family: 'Playfair Display', serif; font-weight: 800;
+  font-size: 2.5rem; color: white; line-height: 1;
+}
+.bento-stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.7); margin-top: 0.4rem; }
+.bento-quote-text {
+  font-family: 'Playfair Display', serif; font-size: 1rem;
+  font-weight: 700; color: white; line-height: 1.5; font-style: italic;
+}
+
+/* ── MOBILE BOTTOM BAR ── */
+.mobile-bottom-bar {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0;
+  z-index: 200;
+  background: rgba(15,28,46,0.97);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(14,165,160,0.2);
+  padding: 0.75rem 2rem;
+  justify-content: space-around; align-items: center;
+}
+.mobile-bottom-bar a {
+  display: flex; flex-direction: column; align-items: center; gap: 0.25rem;
+  text-decoration: none; color: rgba(255,255,255,0.6);
+  font-family: 'Space Mono', monospace; font-size: 0.6rem;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  transition: all 0.25s ease;
+}
+.mobile-bottom-bar a:hover,
+.mobile-bottom-bar a:active { color: var(--teal); transform: translateY(-2px); }
+.mobile-bottom-bar .mbb-icon {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; transition: all 0.25s;
+}
+.mobile-bottom-bar a:hover .mbb-icon,
+.mobile-bottom-bar a:active .mbb-icon {
+  background: rgba(14,165,160,0.2);
+  border-color: var(--teal);
+}
+@media(max-width:768px) {
+  .mobile-bottom-bar { display: flex; }
+  body { padding-bottom: 72px; }
+}
+
+/* EXTRA RESPONSIVE for new features */
+@media(max-width:768px) {
+  .side-bar { display: none; }
+  .progress-dots { display: none; }
+  .bento-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 180px 160px; }
+  .bento-cell.tall { grid-row: 1 / 3; }
+}
+@media(max-width:480px) {
+  .bento-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .bento-cell { height: 220px; }
+  .bento-cell.tall { grid-row: auto; }
+}
+
 </style>
 </head>
 <body>
 
+<div id="scroll-progress"></div>
 <!-- LOADER -->
 <div id="loader">
   <div class="loader-logo">Bosco<span>.</span></div>
@@ -525,6 +967,29 @@ footer{background:#060f1a;padding:1.4rem 8%;display:flex;justify-content:space-b
 
 <!-- BACK TO TOP -->
 <button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+
+<!-- SIDE SOCIAL BAR -->
+<div class="side-bar" id="side-bar">
+  <a href="mailto:boscohabarugira32@gmail.com" title="Email">✉</a>
+  <a href="https://linkedin.com/in/bosco-habarugira" target="_blank" title="LinkedIn">in</a>
+  <a href="tel:+250784866906" title="Call">📞</a>
+  <a href="https://linktr.ee/bosco_habarugira" target="_blank" title="Portfolio">🔗</a>
+</div>
+
+<!-- SECTION PROGRESS DOTS -->
+<div class="progress-dots" id="progress-dots">
+  <button class="progress-dot" data-target="home"          data-label="Home"></button>
+  <button class="progress-dot" data-target="about"         data-label="About"></button>
+  <button class="progress-dot" data-target="values"        data-label="Values"></button>
+  <button class="progress-dot" data-target="skills"        data-label="Skills"></button>
+  <button class="progress-dot" data-target="experience"    data-label="Experience"></button>
+  <button class="progress-dot" data-target="education"     data-label="Education"></button>
+  <button class="progress-dot" data-target="certifications" data-label="Certifications"></button>
+  <button class="progress-dot" data-target="services"      data-label="Services"></button>
+  <button class="progress-dot" data-target="testimonials"  data-label="Reviews"></button>
+  <button class="progress-dot" data-target="contact"       data-label="Contact"></button>
+</div>
 
 <!-- PARTICLES -->
 <div class="particles" id="particles"></div>
@@ -541,6 +1006,7 @@ footer{background:#060f1a;padding:1.4rem 8%;display:flex;justify-content:space-b
     <li><a href="#contact" data-section="contact">Contact</a></li>
   </ul>
   <div class="nav-right">
+    <button class="theme-toggle" id="theme-toggle" title="Toggle dark/light mode"></button>
     <a href="#" class="nav-cv" onclick="alert('CV download coming soon! Contact Bosco directly.')">Download CV</a>
     <a href="#contact" class="nav-cta">Let\'s Talk</a>
     <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -563,6 +1029,7 @@ footer{background:#060f1a;padding:1.4rem 8%;display:flex;justify-content:space-b
 
 <!-- HERO -->
 <section class="hero" id="home">
+  <div class="hero-mesh"></div>
   <div class="hero-left">
     <div class="hero-badge"><span class="badge-dot"></span> Open to New Ideas</div>
     <div class="hero-subtitle">Technical Innovator · Kigali, Rwanda</div>
@@ -570,7 +1037,7 @@ footer{background:#060f1a;padding:1.4rem 8%;display:flex;justify-content:space-b
     <div class="typewriter-wrap"><span id="typewriter"></span><span class="cursor-blink"></span></div>
     <p class="hero-desc">Bridging <strong>Electrical Engineering</strong> and <strong>human-centric design</strong> to build IoT systems, smart environments, and seamless experiences that simply work.</p>
     <div class="hero-btns">
-      <a href="#experience" class="btn-main">View My Work</a>
+      <a href="#experience" class="btn-main magnetic">View My Work</a>
       <a href="#contact" class="btn-sec">Get In Touch</a>
     </div>
   </div>
@@ -592,32 +1059,74 @@ footer{background:#060f1a;padding:1.4rem 8%;display:flex;justify-content:space-b
   <div class="stat"><span class="stat-n" data-target="30" data-suffix="h+">0</span><span class="stat-l">Training Delivered</span></div>
 </div>
 
+<!-- MARQUEE -->
+<div class="marquee-band">
+  <div class="marquee-track">
+    <div class="marquee-item"><span class="marquee-dot"></span>IoT Systems</div><div class="marquee-item"><span class="marquee-dot"></span>Electrical Engineering</div><div class="marquee-item"><span class="marquee-dot"></span>Event Technology</div><div class="marquee-item"><span class="marquee-dot"></span>Cybersecurity</div><div class="marquee-item"><span class="marquee-dot"></span>Kigali Rwanda</div><div class="marquee-item"><span class="marquee-dot"></span>Technical Innovation</div><div class="marquee-item"><span class="marquee-dot"></span>Customer Excellence</div><div class="marquee-item"><span class="marquee-dot"></span>Smart Systems</div><div class="marquee-item"><span class="marquee-dot"></span>Problem Solver</div><div class="marquee-item"><span class="marquee-dot"></span>IoT Systems</div><div class="marquee-item"><span class="marquee-dot"></span>Electrical Engineering</div><div class="marquee-item"><span class="marquee-dot"></span>Event Technology</div><div class="marquee-item"><span class="marquee-dot"></span>Cybersecurity</div><div class="marquee-item"><span class="marquee-dot"></span>Kigali Rwanda</div><div class="marquee-item"><span class="marquee-dot"></span>Technical Innovation</div><div class="marquee-item"><span class="marquee-dot"></span>Customer Excellence</div><div class="marquee-item"><span class="marquee-dot"></span>Smart Systems</div><div class="marquee-item"><span class="marquee-dot"></span>Problem Solver</div>
+  </div>
+</div>
+
+<div class="wave-divider" style="background:var(--navy)"><svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg"><path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--light)"/></svg></div>
 <!-- ABOUT -->
 <section class="section" id="about">
+  <div class="section-bg-num">01</div>
   <div class="section-tag">About Me</div>
   <h2 class="section-heading">Who I Am</h2>
   <div class="about-grid">
-    <div class="about-images reveal">
-      <div class="about-img tall"><img id="img-about1" src="" alt="Bosco"><div class="img-overlay"></div></div>
-      <div class="about-img"><img id="img-about2" src="" alt="Bosco"><div class="img-overlay"></div></div>
-      <div class="about-img" style="background:linear-gradient(135deg,var(--teal),var(--navy));border-radius:14px;display:flex;align-items:center;justify-content:center;">
-        <div style="text-align:center;padding:1.5rem">
-          <div style="font-size:3rem;margin-bottom:0.5rem">⚡</div>
-          <div style="font-family:'Playfair Display',serif;font-weight:700;color:white;font-size:1rem">5+ Years</div>
-          <div style="font-size:0.75rem;color:rgba(255,255,255,0.7);margin-top:0.3rem">Building & Serving</div>
-        </div>
+    <div class="bento-grid reveal">
+      <div class="bento-cell tall">
+        <img id="img-about1" src="" alt="Bosco" class="parallax-img">
+      </div>
+      <div class="bento-cell">
+        <img id="img-about2" src="" alt="Bosco" class="parallax-img">
+      </div>
+      <div class="bento-cell stat-cell">
+        <div class="bento-stat-num">5+</div>
+        <div class="bento-stat-label">Years of Impact</div>
+      </div>
+      <div class="bento-cell quote-cell" style="grid-column:2/4">
+        <p class="bento-quote-text">"Technology should be invisible — serving people so seamlessly they never notice it."</p>
       </div>
     </div>
     <div class="about-text reveal">
       <p>I am a <strong>passionate technical professional</strong> based in Kigali, Rwanda, sitting at the intersection of engineering precision and hospitality warmth. My background spans electrical systems, IoT architecture, event technology, and front-office operations.</p>
-      <p>What sets me apart is my ability to <strong>speak both languages</strong> — the language of circuits and code, and the language of people and service. I've implemented systems that reduced downtime by 25%, delivered world-class event tech, and trained 100+ students.</p>
-      <p>My philosophy: <strong>technology should be invisible</strong>. The best systems serve people so well, they simply don't notice them.</p>
+      <p>What sets me apart is my ability to <strong class="highlight-word">speak both languages</strong> — the language of circuits and code, and the language of people and service. I've implemented systems that reduced downtime by 25%, delivered world-class event tech, and trained 100+ students.</p>
+      <p>My philosophy: <strong class="highlight-word">technology should be invisible</strong>. The best systems serve people so well, they simply don't notice them.</p>
       <div class="about-info">
         <div class="info-item">🎓 Diploma in Electrical Technology</div>
         <div class="info-item">📍 Kigali, Rwanda</div>
         <div class="info-item">🌍 English &amp; Kinyarwanda</div>
         <div class="info-item">💼 Open to Remote &amp; On-site</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="section" id="values">
+  <div class="section-bg-num">02</div>
+  <div class="section-tag">Core Principles</div>
+  <h2 class="section-heading">My <span class="grad-text">Approach</span></h2>
+  <div class="values-grid">
+    <div class="value-card tilt reveal">
+      <span class="value-icon">🎯</span>
+      <div class="value-title">Precision</div>
+      <div class="value-desc">Every wire, every line of code, every guest interaction — done right the first time. Attention to detail is not a habit, it is a standard.</div>
+    </div>
+    <div class="value-card tilt reveal" style="transition-delay:0.08s">
+      <span class="value-icon">🤝</span>
+      <div class="value-title">People First</div>
+      <div class="value-desc">Technology exists to serve people. I build systems that are so seamless, the people using them never have to think about them.</div>
+    </div>
+    <div class="value-card tilt reveal" style="transition-delay:0.16s">
+      <span class="value-icon">💡</span>
+      <div class="value-title">Innovation</div>
+      <div class="value-desc">Combining electrical engineering with IoT, cybersecurity, and hospitality creates solutions no single discipline could build alone.</div>
+    </div>
+    <div class="value-card tilt reveal" style="transition-delay:0.24s">
+      <span class="value-icon">🌱</span>
+      <div class="value-title">Growth</div>
+      <div class="value-desc">Always learning, always improving. From teaching 100+ students to exploring cloud computing — curiosity is the engine that drives everything.</div>
     </div>
   </div>
 </section>
@@ -651,6 +1160,7 @@ footer{background:#060f1a;padding:1.4rem 8%;display:flex;justify-content:space-b
 
 <!-- EXPERIENCE -->
 <section class="section" id="experience">
+  <div class="section-bg-num">04</div>
   <div class="section-tag">Career Journey</div>
   <h2 class="section-heading">Experience</h2>
   <div class="exp-intro reveal">
@@ -695,6 +1205,46 @@ footer{background:#060f1a;padding:1.4rem 8%;display:flex;justify-content:space-b
       <div class="exp-card-point">Delivered exceptional guest experiences across multiple venues</div>
       <div class="exp-card-point">Handled cash, POS transactions, and complaint resolution with professionalism</div>
       <span class="exp-card-tag">Service</span>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="impact-section">
+  <div style="text-align:center;margin-bottom:3rem;position:relative;z-index:1">
+    <div class="t-tag" style="justify-content:center">By The Numbers</div>
+    <h2 class="section-heading" style="color:white">Real <span class="grad-text">Impact</span></h2>
+  </div>
+  <div class="impact-grid">
+    <div class="impact-item reveal">
+      <span class="impact-num" data-impact="3">0</span>
+      <div class="impact-label">World-Class Events Powered</div>
+      <span class="impact-sublabel">F1 · UCI · PFL MMA</span>
+    </div>
+    <div class="impact-item reveal" style="transition-delay:0.1s">
+      <span class="impact-num" data-impact="100">0</span>
+      <div class="impact-label">Students Trained in Cybersecurity</div>
+      <span class="impact-sublabel">Risk Management · Network Security</span>
+    </div>
+    <div class="impact-item reveal" style="transition-delay:0.2s">
+      <span class="impact-num" data-impact="25">0</span>
+      <div class="impact-label">% Equipment Downtime Reduced</div>
+      <span class="impact-sublabel">Preventive Maintenance System</span>
+    </div>
+    <div class="impact-item reveal">
+      <span class="impact-num" data-impact="30">0</span>
+      <div class="impact-label">Hours of Training Delivered</div>
+      <span class="impact-sublabel">Cybersecurity Curriculum</span>
+    </div>
+    <div class="impact-item reveal" style="transition-delay:0.1s">
+      <span class="impact-num" data-impact="5">0</span>
+      <div class="impact-label">Years of Professional Experience</div>
+      <span class="impact-sublabel">Technical & Hospitality Roles</span>
+    </div>
+    <div class="impact-item reveal" style="transition-delay:0.2s">
+      <span class="impact-num" data-impact="100">0</span>
+      <div class="impact-label">Technical Items Managed</div>
+      <span class="impact-sublabel">Zero Loss or Damage Record</span>
     </div>
   </div>
 </section>
@@ -770,6 +1320,7 @@ footer{background:#060f1a;padding:1.4rem 8%;display:flex;justify-content:space-b
 
 <!-- CERTIFICATIONS -->
 <section class="section" id="certifications">
+  <div class="section-bg-num">06</div>
   <div class="section-tag">Credentials</div>
   <h2 class="section-heading">Certifications</h2>
   <div class="certs-grid">
@@ -777,6 +1328,51 @@ footer{background:#060f1a;padding:1.4rem 8%;display:flex;justify-content:space-b
     <div class="cert-card reveal" style="transition-delay:0.08s"><span class="cert-ico">🛡️</span><div class="cert-name">Cybersecurity Certificate</div><div class="cert-org">Coursera · CampasAGT</div></div>
     <div class="cert-card reveal" style="transition-delay:0.16s"><span class="cert-ico">🌐</span><div class="cert-name">Web Development</div><div class="cert-org">HTML, CSS, JS · CampasAGT</div></div>
     <div class="cert-card reveal" style="transition-delay:0.24s"><span class="cert-ico">🎯</span><div class="cert-name">Digital Competence</div><div class="cert-org">ICDL</div></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="section-bg-num">07</div>
+  <div class="section-tag">What I Offer</div>
+  <h2 class="section-heading">Services &amp; <span class="grad-text">Capabilities</span></h2>
+  <div class="services-grid">
+    <div class="service-card tilt reveal">
+      <div class="service-num">01</div>
+      <div class="service-title">IoT System Design &amp; Integration</div>
+      <div class="service-desc">Designing and deploying connected ecosystems — from sensor networks to dashboards. Turning physical spaces into intelligent, data-driven environments using Arduino, GSM modules, and Edge AI.</div>
+      <div class="service-tags"><span class="pill">Arduino</span><span class="pill">GSM 800L</span><span class="pill">Edge AI</span><span class="pill">Embedded Systems</span></div>
+    </div>
+    <div class="service-card tilt reveal" style="transition-delay:0.1s">
+      <div class="service-num">02</div>
+      <div class="service-title">Electrical Installation &amp; Maintenance</div>
+      <div class="service-desc">Professional electrical system design, installation, and preventive maintenance for commercial and residential environments. Proven track record of reducing downtime and improving reliability.</div>
+      <div class="service-tags"><span class="pill">Installation</span><span class="pill">Preventive Maintenance</span><span class="pill">Troubleshooting</span></div>
+    </div>
+    <div class="service-card tilt reveal" style="transition-delay:0.2s">
+      <div class="service-num">03</div>
+      <div class="service-title">Technical Event Support</div>
+      <div class="service-desc">End-to-end AV and technical coordination for events of any scale. From setup to live execution — screens, lighting, sound systems, and electrical infrastructure handled with precision.</div>
+      <div class="service-tags"><span class="pill">AV Systems</span><span class="pill">Lighting</span><span class="pill">Sound</span><span class="pill">On-site Support</span></div>
+    </div>
+    <div class="service-card tilt reveal">
+      <div class="service-num">04</div>
+      <div class="service-title">Cybersecurity Training &amp; Awareness</div>
+      <div class="service-desc">Delivering customized cybersecurity workshops for teams and organizations. Covering threat awareness, risk management, network security, and safe digital practices in plain language.</div>
+      <div class="service-tags"><span class="pill">Risk Management</span><span class="pill">GRC</span><span class="pill">Network Security</span></div>
+    </div>
+    <div class="service-card tilt reveal" style="transition-delay:0.1s">
+      <div class="service-num">05</div>
+      <div class="service-title">Operations &amp; Technical Consulting</div>
+      <div class="service-desc">Improving operational efficiency through structured documentation, system audits, process optimization, and cross-department coordination strategies drawn from real hospitality environments.</div>
+      <div class="service-tags"><span class="pill">Process Optimization</span><span class="pill">Documentation</span><span class="pill">Operations</span></div>
+    </div>
+    <div class="service-card tilt reveal" style="transition-delay:0.2s">
+      <div class="service-num">06</div>
+      <div class="service-title">Web &amp; Digital Presence</div>
+      <div class="service-desc">Building clean, user-centric websites and digital tools using HTML, CSS, and JavaScript. Focused on UX strategy that makes technology feel effortless to the people using it.</div>
+      <div class="service-tags"><span class="pill">HTML/CSS</span><span class="pill">JavaScript</span><span class="pill">UX Strategy</span></div>
+    </div>
   </div>
 </section>
 
@@ -824,24 +1420,24 @@ footer{background:#060f1a;padding:1.4rem 8%;display:flex;justify-content:space-b
     <div class="testi-author-col">
       <div class="testi-avatar testi-avatar-lg">JM</div>
       <div class="testi-name">Jean-Marie N.</div>
-      <div class="testi-role">Event Manager · Rwanda Events Ltd</div>
+      
     </div>
   </div>
   <div class="testi-grid">
     <div class="testi-card reveal">
       <div class="testi-stars">★★★★★</div>
       <p class="testi-quote">What impressed me most about Bosco was how he combined deep technical knowledge with genuine warmth for guests. He fixes the problem before you even notice there was one.</p>
-      <div class="testi-author"><div class="testi-avatar">AM</div><div><div class="testi-name">Amina M.</div><div class="testi-role">Front Office Supervisor · Dereva Hotel</div></div></div>
+      <div class="testi-author"><div class="testi-avatar">AM</div><div><div class="testi-name">Amina M.</div></div></div>
     </div>
     <div class="testi-card reveal" style="transition-delay:0.1s">
       <div class="testi-stars">★★★★★</div>
       <p class="testi-quote">The maintenance system Bosco put in place was a game changer. Equipment failures dropped significantly and his documentation made everything easier to manage across departments.</p>
-      <div class="testi-author"><div class="testi-avatar">CR</div><div><div class="testi-name">Claude R.</div><div class="testi-role">Operations Manager · Isange Paradise Resort</div></div></div>
+      <div class="testi-author"><div class="testi-avatar">CR</div><div><div class="testi-name">Claude R.</div></div></div>
     </div>
     <div class="testi-card reveal" style="transition-delay:0.2s">
       <div class="testi-stars">★★★★★</div>
       <p class="testi-quote">Working alongside Bosco at events is always a pleasure. He brings technical expertise and great team spirit — calm under pressure, sharp when it counts.</p>
-      <div class="testi-author"><div class="testi-avatar">RN</div><div><div class="testi-name">Robert N.</div><div class="testi-role">Technical Lead · BK Arena Events</div></div></div>
+      <div class="testi-author"><div class="testi-avatar">RN</div><div><div class="testi-name">Robert N.</div></div></div>
     </div>
   </div>
 
@@ -860,10 +1456,30 @@ footer{background:#060f1a;padding:1.4rem 8%;display:flex;justify-content:space-b
       <a href="https://linktr.ee/bosco_habarugira" target="_blank" class="contact-card"><span class="cc-icon">🚀</span><span class="cc-label">Portfolio</span><span class="cc-val">linktr.ee/bosco_habarugira</span></a>
     </div>
     <div style="margin-top:2.5rem">
-      <button class="btn-celebrate" onclick="celebrate()">🎉 Let's Work Together!</button>
+      <button class="btn-celebrate magnetic" onclick="celebrate()">🎉 Let's Work Together!</button>
     </div>
   </div>
 </section>
+
+<!-- MOBILE BOTTOM BAR -->
+<div class="mobile-bottom-bar">
+  <a href="mailto:boscohabarugira32@gmail.com">
+    <div class="mbb-icon">✉️</div>
+    <span>Email</span>
+  </a>
+  <a href="https://linkedin.com/in/bosco-habarugira" target="_blank">
+    <div class="mbb-icon">in</div>
+    <span>LinkedIn</span>
+  </a>
+  <a href="tel:+250784866906">
+    <div class="mbb-icon">📱</div>
+    <span>Call</span>
+  </a>
+  <a href="https://linktr.ee/bosco_habarugira" target="_blank">
+    <div class="mbb-icon">🔗</div>
+    <span>Links</span>
+  </a>
+</div>
 
 <footer>
   <div class="footer-logo">Bosco<span>.</span></div>
@@ -994,12 +1610,6 @@ const navObs = new IntersectionObserver(entries=>{
 },{threshold:0.4});
 sections.forEach(s=>navObs.observe(s));
 
-// ── BACK TO TOP ──
-const backTop=document.getElementById('back-top');
-window.addEventListener('scroll',()=>{
-  backTop.classList.toggle('visible',window.scrollY>400);
-});
-
 // ── RIPPLE ──
 const rippleStyle=document.createElement('style');
 rippleStyle.textContent='@keyframes ripple{to{transform:scale(40);opacity:0}}';
@@ -1029,6 +1639,154 @@ function celebrate(){
     setTimeout(()=>c.remove(),(Math.random()*2+2)*1000);
   }
 }
+
+// ── SCROLL PROGRESS BAR ──
+const progressBar = document.getElementById('scroll-progress');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+  progressBar.style.width = pct + '%';
+  document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 50);
+  document.getElementById('back-top').classList.toggle('visible', window.scrollY > 400);
+});
+
+// ── SECTION PROGRESS DOTS ──
+const dots = document.querySelectorAll('.progress-dot');
+dots.forEach(dot => {
+  dot.addEventListener('click', () => {
+    const el = document.getElementById(dot.dataset.target);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+const dotObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      dots.forEach(d => d.classList.remove('active'));
+      const active = document.querySelector(`.progress-dot[data-target="${entry.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { threshold: 0.4 });
+document.querySelectorAll('section[id]').forEach(s => dotObs.observe(s));
+
+// ── MAGNETIC BUTTONS ──
+document.querySelectorAll('.magnetic').forEach(btn => {
+  btn.addEventListener('mousemove', (e) => {
+    const rect = btn.getBoundingClientRect();
+    const mx = (e.clientX - rect.left - rect.width  / 2) * 0.25;
+    const my = (e.clientY - rect.top  - rect.height / 2) * 0.25;
+    btn.style.transform = `translate(${mx}px, ${my}px)`;
+  });
+  btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+});
+
+// ── HIGHLIGHT KEYWORDS ──
+const kwObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.highlight-word').forEach((el, i) => {
+        setTimeout(() => el.classList.add('visible'), i * 200);
+      });
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.about-text, .exp-intro-text').forEach(el => kwObs.observe(el));
+
+// ── IMAGE PARALLAX ──
+document.addEventListener('mousemove', (e) => {
+  const px = (e.clientX / window.innerWidth  - 0.5) * 12;
+  const py = (e.clientY / window.innerHeight - 0.5) * 12;
+  document.querySelectorAll('.parallax-img').forEach(img => {
+    img.style.transform = `translate(${px * 0.4}px, ${py * 0.4}px) scale(1.05)`;
+  });
+});
+
+// ── SLOT MACHINE STATS ──
+function slotCount(el, target, suffix) {
+  const chars = '0123456789';
+  let frame = 0, totalFrames = 40;
+  const timer = setInterval(() => {
+    frame++;
+    if (frame < totalFrames - 8) {
+      el.textContent = chars[Math.floor(Math.random() * chars.length)] + suffix;
+    } else {
+      const progress = (frame - (totalFrames - 8)) / 8;
+      el.textContent = Math.floor(target * progress) + suffix;
+    }
+    if (frame >= totalFrames) { el.textContent = target + suffix; clearInterval(timer); }
+  }, 30);
+}
+const slotObs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.querySelectorAll('.stat-n').forEach((el, i) => {
+      const tgt = +el.dataset.target, sfx = el.dataset.suffix || '';
+      setTimeout(() => slotCount(el, tgt, sfx), i * 150);
+    });
+    slotObs.unobserve(entry.target);
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.stats-bar').forEach(el => slotObs.observe(el));
+
+// ── WORD-BY-WORD HEADING REVEAL ──
+document.querySelectorAll('.section-heading').forEach(heading => {
+  // Only apply to headings with plain text, skip ones with inner HTML spans
+  if (heading.querySelector('span, em, strong')) return;
+  const rawWords = heading.textContent.trim().split(' ');
+  heading.classList.add('word-reveal');
+  heading.innerHTML = rawWords.map((w, i) =>
+    `<span><em style="transition-delay:${i * 0.08}s">${w}</em></span> `
+  ).join('');
+});
+const wordObs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.word-reveal').forEach(el => wordObs.observe(el));
+
+// ── DARK / LIGHT TOGGLE ──
+const themeBtn = document.getElementById('theme-toggle');
+const savedTheme = localStorage.getItem('bosco-theme');
+if (savedTheme === 'dark') document.body.classList.add('dark');
+
+themeBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  localStorage.setItem('bosco-theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+});
+
+// ── TILT EFFECT ──
+document.querySelectorAll('.tilt').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width  - 0.5;
+    const y = (e.clientY - rect.top)  / rect.height - 0.5;
+    card.style.transform = `perspective(600px) rotateY(${x * 10}deg) rotateX(${y * -10}deg) translateY(-6px)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
+
+// ── IMPACT NUMBER COUNTERS ──
+const impactObs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.querySelectorAll('.impact-num').forEach(el => {
+      const target = +el.dataset.impact;
+      const suffix = target === 25 ? '%' : target === 5 ? '+' : '+';
+      let cur = 0;
+      const inc = target / 60;
+      const t = setInterval(() => {
+        cur = Math.min(cur + inc, target);
+        el.textContent = Math.floor(cur) + suffix;
+        if (cur >= target) clearInterval(t);
+      }, 22);
+    });
+    impactObs.unobserve(entry.target);
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.impact-grid').forEach(el => impactObs.observe(el));
+
 </script>
 </body>
 </html>
